@@ -1,0 +1,184 @@
+##软件工程过程作业 - 学生信息管理##  
+,,、#include<stdio.h>
+#include<windows.h>
+void function1();
+void function2();
+void function3();
+void function4();
+void title();
+void menu();
+int j;
+struct book
+{
+    int number;
+    char name[30];
+    char writer[30];
+    char print[30];
+    int year;
+    int month;
+    int date;
+};
+struct book B[100]={
+        {001, "sanguoyanyi","luoguanzhong","zhongwenshucheng",1330 ,5 ,16},
+        {002, "liangjian","duliang","jiefangjunwenyi", 2005, 3 ,1},
+        {003, "langyanbeiping","duliang"," changjiangwenyi",2006 ,4 ,3},
+        {004, "xueselangman","duliang","jiefangjunwenyi", 2007 ,5, 8},
+		{000,},
+		{000,},
+		{000,}
+		};
+        int main()
+        {
+            title();
+            menu(); }
+            void title()
+            {
+                printf("\n\n\n******************************************\n");
+                printf("******欢迎来到图书馆管理系统**************\n");
+                printf("******************************************\n");
+                printf("******************************************\n");
+                printf("********作者 王宇翔***********************\n");
+                printf("********************软件1班***************\n");
+                printf("******************************************\n\n\n");
+
+            }
+            void menu()
+            {
+                printf("**************************************\n");
+                printf("******-----1.浏览数据----*************\n");
+                printf("******-----2.增加书籍----*************\n");
+                printf("******-----3.修改数据----*************\n");
+                printf("******-----4.查询书籍(按名称，按作者)******\n");
+                printf("******-----5.退出    ----*************\n");
+                printf("请选择:\n");
+                int a;
+                scanf("%d",&a);
+                switch(a)
+                {
+                    case 1: function1();break;
+                    case 2:  function2(); break;
+                    case 3:  function3();break;
+                    case 4: function4();break;
+                    case 5: break;
+                    default :  printf("警告输入错误！！！！！");
+                }
+
+
+
+            }
+            void function1()
+            {   system("cls");
+                int i;
+                for(i=0;i<=100;i++)
+                {
+                    if(B[i].number==0)
+                    {
+                        j=i;
+                        break;
+                    }
+                }
+                printf("总藏书量为%5d\n",j);
+                printf(" 书号        书名        作者       出版社               出版日期\n");
+                for(i=0;i<j;i++)
+                printf("%d   %s   %s  %s  %2d%2d%2d\n",B[i].number,B[i].name,B[i].writer,B[i].print,B[i].year,B[i].month,B[i].date);
+                printf("***********-----------1.回到主菜单------------******\n");
+                printf("***********-----------2.退出系统--------------******\n");
+                printf("请选择:\n");
+                int c;
+                scanf("%d",&c);
+                if(c==1){
+                system("cls");
+                menu();}
+                else
+                system ("cls");}
+          void function2()
+          {
+              system("cls");
+              printf("**********************************************************\n");
+              printf("**********************************************************\n");
+              printf("    请输入书号,书名,作者,出版社,时间(年月日)\n");
+              printf("注意类型为123 we we we 1 2 3\n");
+              int i;
+              for(i=0;i<=100;i++)
+              {
+                  if(B[i].number==0)
+                  {j=i;
+                  break;}
+              }
+              scanf("%d %s %s %s %d %d %d",&B[j].number,B[j].name,B[j].writer,B[j].print,&B[j].year,&B[j].month,&B[j].date );
+
+              printf("***********添加完成****************\n");
+              function1();
+
+
+          }
+          void function3()
+          {  system("cls");
+             int i,d;
+                for(i=0;i<=100;i++)
+                {
+                    if(0==B[i].number)
+                    {
+                        j=i;
+                        break;
+                    }
+                }
+                printf("总藏书量为%5d\n",j);
+                printf(" 书号        书名        作者       出版社               出版日期\n");
+                for(i=0;i<j;i++)
+                printf("%d   %s   %s  %s  %2d%2d%2d\n",B[i].number,B[i].name,B[i].writer,B[i].print,B[i].year,B[i].month,B[i].date);
+                printf("请输入要修改的行数:\n");
+                scanf("%d",&d);
+                printf("修改第%d行\n",d);
+                printf("    请输入书号,书名,作者,出版社,时间(年月日)\n");
+                printf("    注意类型为123 we we we 1 2 3\n");
+                 scanf("%d %s %s %s %d %d %d",&B[d-1].number,B[d-1].name,B[d-1].writer,B[d-1].print,&B[d-1].year,&B[d-1].month,&B[d-1].date );
+                 printf("修改成功！！");
+                 function1();
+
+
+
+          }
+          void function4()
+          {    system("cls");
+                int i,f;
+                for(i=0;i<=100;i++)
+                {
+                    if(0==B[i].number)
+                    {
+                        j=i;
+                        break;
+                    }
+                }
+                printf("总藏书量为%5d\n",j);
+                printf(" 书号        书名        作者       出版社               出版日期\n");
+                for(i=0;i<j;i++)
+                printf("%d   %s   %s  %s  %2d%2d%2d\n",B[i].number,B[i].name,B[i].writer,B[i].print,B[i].year,B[i].month,B[i].date);
+                printf("请输入书名或作者:\n");
+                char name[30];
+                scanf("%s",name);
+                for(i=0;i<10;i++)
+                {
+                    if((strcmp(name,B[i].name)==0)||(strcmp(name,B[i].writer)==0))
+                    {f=i;printf("       书号,书名,作者,出版社,时间(年月日)\n");
+                    printf("%d   %s   %s  %s  %2d%2d%2d\n",B[f].number,B[f].name,B[f].writer,B[f].print,B[f].year,B[f].month,B[f].date);
+                    }}
+                    printf("***********-----------1.回到主菜单------------******\n");
+                    printf("***********-----------2.退出系统--------------******\n");
+                    printf("请选择:\n");
+                    int c;
+                    scanf("%d",&c);
+                   if(c==1){
+                    system("cls");
+                   menu();}
+                   else
+                   system ("cls");
+
+}
+
+、、、
+
+
+
+
+
